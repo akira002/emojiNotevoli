@@ -77,6 +77,18 @@ Alignment->Center]]]
 
 Commutativa[]
 
+Commutativa[]:=DynamicModule[{x,y, l},x=Blank[];
+y=3;
+l = {};
+Deploy[Style[Panel[Grid[{{InputField[Dynamic[x]]+InputField[Dynamic[y]],Text["="],Defer[Dynamic[y]+Dynamic[x]],Text["="],(*Dynamic[MyPrint[x,Text[" + "],y,Text[" = "],y,Text[" + "],x,Text[" = "],x+y];x+y]*)Dynamic[x+y],
+Dynamic@Refresh[AppendTo[l, x+y];"",TrackedSymbols:>{x,y}],
+Dynamic@Panel[Column[l,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]
+}},Alignment->Right],ImageMargins->10, ImageSize->{800,800}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}]]]
+
+
+
+
+
 End[]
 
 
