@@ -34,7 +34,8 @@ Return[tmp]];
 getResult[a_,b_]:=
 	If[ImageQ[a]&&ImageQ[b],Return[getEmoji[a,b]],Return[Dynamic[a+b]]];
 
-Commutativa[]:=DynamicModule[{x = emoji[[1]], y = emoji[[2]], q= emoji[[3]], k},
+Commutativa[]:=DynamicModule[{x = emoji[[1]], y = emoji[[2]], q= emoji[[3]], k, mylist},
+mylist = {};
 Panel[Column[{
 	Style
 	[Panel[Grid[
@@ -63,10 +64,13 @@ Panel[Column[{
 		Text["="],
 		Dynamic[z]+ Dynamic[w],
 		Text["="],
-		Dynamic[k = getResult[z,w]; k]}},
+		Dynamic[k = getResult[z,w]; k], 
+Dynamic@Refresh[AppendTo[mylist, w+z];"",TrackedSymbols:>{w,z}],
+Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}},
 		 Alignment -> Right], ImageMargins -> 10],
    DefaultOptions -> {InputField -> {ContinuousAction -> True,
-       FieldSize -> {{5, 30}, {1, Infinity}}}}
+       FieldSize -> {{5, 30}, {1, Infinity}}
+}}
 	]
 },
 Alignment->Center]]]
