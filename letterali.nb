@@ -1,0 +1,93 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4012,         83]
+NotebookOptionsPosition[      3759,         69]
+NotebookOutlinePosition[      4115,         85]
+CellTagsIndexPosition[      4072,         82]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Il calcolo Algebrico : dai numeri alle lettere.\nProgetto di Matematica \
+Computazionale per le Scuole Superiori di Primo Grado\n\n\nAbbiamo \
+considerato nell\[CloseCurlyQuote]insieme R le varie operazioni che \
+conoscevamo e abbiamo detto che, per esse, valgono le stesse \
+propriet\[AGrave] viste per i numeri naturali. Per esempio, possiamo dire che \
+per l\[CloseCurlyQuote]addizione e per la moltiplicazione vale la propriet\
+\[AGrave] commutativa e, per osservare la validit\[AGrave] di quanto abbiamo \
+detto, facciamo qualche esempio.\n\n(+5) + (-9) = (-9) + (+5) -> +5 - 9  = -4\
+\n\n\nL\[CloseCurlyQuote]esempio precedente mostra la propriet\[AGrave] \
+commutativa dell\[CloseCurlyQuote]addizione, la quale recita:\n\
+\[OpenCurlyDoubleQuote]Cambiando l\[CloseCurlyQuote]ordine degli addendi, il \
+risultato non cambia\[CloseCurlyDoubleQuote].\nMa cosa intendiamo con \
+addendo?\nIn realt\[AGrave], qualsiasi cosa pu\[OGrave] essere un addendo: un \
+numero naturale, un numero reale, una lettera, una faccina, un !!!!maiale od \
+un !!!!!panda.\nNon ci credete? Vediamo dunque come funzionano le principali \
+propriet\[AGrave] delle operazioni  e delle potenze con \
+\[OpenCurlyDoubleQuote]qualsiasi cosa\[CloseCurlyDoubleQuote].\n\nPROPRIET\
+\[AGrave]\n\n-Commutativa dell\[CloseCurlyQuote]addizione\n-Commutativa della \
+moltiplicazione\n-Distributiva dell\[CloseCurlyQuote]addizione\n-Distributiva \
+della moltiplicazione\n\nL\[CloseCurlyQuote]uso delle lettere al posto dei \
+numeri, come avete capito, \[EGrave] un passo importante della matematica \
+verso la sua pi\[UGrave] importante specificit\[AGrave], la",
+ StyleBox[" matematizzazione della realt\[AGrave]",
+  FontWeight->"Bold"],
+ ", che permette di usare il linguaggio e gli strumenti matematici in \
+fenomeni di natura diversa (fisici, economici, geografici, tecnici, etc...).\n\
+\nVista dunque l\[CloseCurlyQuote]importanza, addentriamoci nel campo del ",
+ StyleBox["calcolo letterale",
+  FontWeight->"Bold"],
+ ", la parte di matematica che studia il passaggio dai numeri alle lettere e \
+ne stabilisce le nozioni di carattere generale e \
+l\[CloseCurlyQuote]operativit\[AGrave]."
+}], "Text",
+ CellChangeTimes->{{3.67246291720498*^9, 3.672462949186749*^9}, {
+   3.672462985488408*^9, 3.672463022467526*^9}, {3.6724630586332073`*^9, 
+   3.672463127808425*^9}, {3.672463160120645*^9, 3.672463201964848*^9}, {
+   3.672463262647087*^9, 3.672463350600515*^9}, 3.6724635005235367`*^9, {
+   3.672463534217965*^9, 3.6724635464253883`*^9}, {3.672463686326004*^9, 
+   3.672463718745266*^9}, {3.6724637788318357`*^9, 3.6724637804081697`*^9}, {
+   3.672463820425048*^9, 3.672463888227754*^9}, {3.672463931127349*^9, 
+   3.672463966086143*^9}, {3.672464075272881*^9, 3.6724641176983747`*^9}, {
+   3.672464157492618*^9, 3.672464220931295*^9}, {3.672464255109095*^9, 
+   3.672464273697153*^9}, {3.67246444820748*^9, 3.672464531610462*^9}, {
+   3.6724662776168118`*^9, 3.6724665214747763`*^9}, 3.672466646026329*^9, {
+   3.672466920772257*^9, 3.6724669235723753`*^9}, {3.672467448312468*^9, 
+   3.6724674751750393`*^9}, {3.672467520057266*^9, 3.6724675347765427`*^9}, {
+   3.672467585106152*^9, 3.6724675888429317`*^9}}]
+},
+WindowSize->{808, 655},
+WindowMargins->{{Automatic, 193}, {14, Automatic}},
+FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 11, \
+2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3197, 47, 638, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
