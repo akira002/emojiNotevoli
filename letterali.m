@@ -40,6 +40,8 @@ getResult[commprod, a_,b_]:=
 	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ Mod[getEmoji[a]*getEmoji[b], 189] ]]],Return[Dynamic[a*b]]];
 getResult[distrprod, a_,b_,c_]:=
 	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]*(getEmoji[b]+getEmoji[c]), 189] ]]],Return[Dynamic[a*(b+c)]]];
+getResult[distrsomm, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]+(getEmoji[b]*getEmoji[c]), 189] ]]],Return[Dynamic[a+(b*c)]]];
 
 CommutativaSomma[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
@@ -97,7 +99,7 @@ Style[
 Grid[{  
 {
 Grid[{ 
-{Row[{Defer[InputField[Dynamic[x]]* InputField[Dynamic[y]]],
+{Row[{InputField[Dynamic[x]],Text["*"], InputField[Dynamic[y]],
 		Text[" = "],
 		Dynamic[y],
 		Text[" * "],
@@ -109,7 +111,7 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" * "], y, Text[" = "], y, Text[" 
 {
 	Row[{
 		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroMolt, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
 		 " ",
 	
 		(*Text["seleziona secondo operando: "],*)
@@ -173,10 +175,58 @@ Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0
 	], ImageSize ->{panelSizex,panelSizex}
 ]]
 
+DistributivaSomma[]:=DynamicModule[{x, y, z, k, mylist},
+mylist = {};
+x = 1;
+y = 2;
+z = 3;
+panelSizex = 1200;
+panelSizey = 600;
+Panel[
 
-DistributivaProdotto[]
+Style[
+Grid[{  
+{
+Grid[{ 
+{Row[{InputField[Dynamic[x]] , Text["+ ("], InputField[Dynamic[y]]*InputField[Dynamic[z]], Text[")"] ,
+		Text[" = "],
+		"(",  Dynamic[x], " + ", Dynamic[y], ")", " * ", "(",  Dynamic[x], " + ", Dynamic[z], ")",
+		Text[" = "],
+		Dynamic[k = getResult[distrsomm, x, y, z]; k], 
+Dynamic@Refresh[AppendTo[mylist, Row[{ x, Text[" + ("], y, Text[" * "], z ,Text[") = ("], x, Text[" + "], y, Text[") * ("], x, Text[" + "], z, ,Text[") = "], k }]];" ",TrackedSymbols:>{x,y,z}]
+}]},
+{
+	Row[{
+		(*Text["seleziona primo operando: "],*)
+		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		 " ",
+	
+		(*Text["seleziona secondo operando: "],*)
+		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }],
+		" ", 
+		PopupMenu[Dynamic[z],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]
+	}]
+	
+}
+}, ItemSize->{60}],
+Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0}, Alignment->{Center,Center} ],Background->LightBlue]} 
 
 
+}],
+   DefaultOptions -> {InputField -> {ContinuousAction -> True,
+       FieldSize -> {{5, 30}, {1, Infinity}}
+}}
+	], ImageSize ->{panelSizex,panelSizex}
+]]
+
+CommutativaProdotto[]
+DistributivaSomma[]
+
+
+
+
+(* ::InheritFromParent:: *)
+(*Panel[Style[Grid[{{$CellContext`\[AliasDelimiter]}}, ItemSize -> {Automatic, Automatic}], DefaultOptions -> {InputField -> {ContinuousAction -> True, FieldSize -> {{5, 30}, {1, DirectedInfinity[1]}}}}], ImageSize -> {900, 900}]*)
 
 
 (* ::InheritFromParent:: *)
