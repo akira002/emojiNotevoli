@@ -264,7 +264,24 @@ Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0
 	], ImageSize ->{panelSizex,panelSizex}
 ]]
 
-AssociativaSomma[]
+
+ProdottoPotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
+x=2;
+powerx=1;
+powery=1;
+panelSizex=900;
+panelSizey=600;
+Panel[Style[
+Grid[{
+{Grid[{{
+Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" * "], InputField[Dynamic[x],Enabled->False]^InputField[Dynamic[powery],FieldSize->2],
+	Text[" = "],Dynamic[x]^Dynamic[powery],Text[" * "],Dynamic[x]^Dynamic[powerx],
+	Text[" = "],Dynamic[k=getResult[commprod,x^powerx,x^powery];k],
+	Dynamic@Refresh[AppendTo[mylist,
+		Row[{x^Row[{powerx}], Text[" * "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " + ",powery}], Text[" = "], x^Row[{powerx+powery}], Text[" = "],x^(powerx+powery)}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
+{Row[{(*Text["seleziona primo operando: "],*)PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
+ProdottoPotenze[]
+
 
 
 
