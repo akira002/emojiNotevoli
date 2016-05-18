@@ -21,45 +21,46 @@ Clear[Commutativa]
 Clear[x,y, w, z, a,b]
 SetDirectory[NotebookDirectory[]];
 
-emoji = Range[1, 189];
-Do[emoji[[i]] = Import[StringJoin["emoji/Emoji Smiley/Emoji Smiley-0",ToString[i],".png"], ImageSize->40],{i,9}]
-Do[emoji[[i]] = Import[StringJoin["emoji/Emoji Smiley/Emoji Smiley-",ToString[i],".png"], ImageSize->40],{i,10, 189}]
-neutroSomm = Import["emoji/Emoji Nature/Emoji Natur-11.png"];
-neutroProd = Import["emoji/Emoji Nature/Emoji Natur-20.png"];
+emoji = Range[0, 189];
+Do[emoji[[i]] = Import[StringJoin["emoji/Emoji Smiley/Emoji Smiley-0",ToString[i-1],".png"], ImageSize->40],{i,10}]
+Do[emoji[[i]] = Import[StringJoin["emoji/Emoji Smiley/Emoji Smiley-",ToString[i-1],".png"], ImageSize->40],{i,11, 190}]
 
 
 getEmoji[a_]:= Module[ {num1},
-If[Equal[neutroProd, a], Return[1]];
-If[Equal[neutroSomm, a], Return[0]];
 num1= Do[If[Equal[a,emoji[[i]] ], Return[i]],{i, 189}];
-Return[num1]];
+(*Perch\[EAcute] gli smiley sono memorizzati nelle celle 1-190 del vettore, ma corrispondono ai numeri 0-189*)
+Return[num1-1]];
 
+(*per le stesse ragioni del -1 sopra, qui faccio +1*)
 getResult[commsomm, a_,b_]:=
-	If[ImageQ[a]&&ImageQ[b],Return[emoji[[getEmoji[a]+getEmoji[b] ]]],Return[Dynamic[a+b]]];
+	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ (getEmoji[a]+getEmoji[b])+1 ]]],Return[Dynamic[a+b]]];
 getResult[commprod, a_,b_]:=
-	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ Mod[getEmoji[a]*getEmoji[b], 190] ]]],Return[Dynamic[a*b]]];
+	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ Mod[(getEmoji[a]*getEmoji[b])+1, 190] ]]],Return[Dynamic[a*b]]];
 getResult[distrprod, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]*(getEmoji[b]+getEmoji[c]), 190] ]]],Return[Dynamic[a*(b+c)]]];
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]*(getEmoji[b]+getEmoji[c]))+1, 190] ]]],Return[Dynamic[a*(b+c)]]];
 getResult[assocprod, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]*getEmoji[b]*getEmoji[c], 190] ]]],Return[Dynamic[a*b*c]]];
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]*getEmoji[b]*getEmoji[c])+1, 190] ]]],Return[Dynamic[a*b*c]]];
 getResult[assocsomm, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]+getEmoji[b]+getEmoji[c], 190] ]]],Return[Dynamic[a+b+c]]];
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]+getEmoji[b]+getEmoji[c])+1, 190] ]]],Return[Dynamic[a+b+c]]];
 getResult[prodpotb, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^getEmoji[b])*(getEmoji[a]^getEmoji[c]), 190] ]]],Return[Dynamic[(a^b)*(a^c)]]];
+	If[ImageQ[a],Return[emoji[[ Mod[((getEmoji[a]^b)*(getEmoji[a]^c))+1, 190] ]]],Return[Dynamic[(a^b)*(a^c)]]];
 getResult[divpotb, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^getEmoji[b])/(getEmoji[a]^getEmoji[c]), 190] ]]],Return[Dynamic[(a^b)/(a^c)]]];
+	If[ImageQ[a],
+			Return[emoji[[ Mod[((getEmoji[a]^b)/(getEmoji[a]^c))+1, 190] ]]],
+			Return[Dynamic[(a^b)/(a^c)]]
+	];
 getResult[potpot, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^(getEmoji[b]*getEmoji[c])), 190] ]]],Return[Dynamic[a^(b*c)]]];
+	If[ImageQ[a],Return[emoji[[ Mod[((getEmoji[a]^(b*c)))+1, 190] ]] ],Return[Dynamic[a^(b*c)]]];
 getResult[prodpotesp, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[((getEmoji[a]*getEmoji[b])^getEmoji[c]), 190] ]]],Return[Dynamic[(a*b)^c]]];
+	If[ImageQ[a]&&ImageQ[b],Return[ emoji[[ Mod[((getEmoji[a]*getEmoji[b])^c)+1, 190] ]] ],Return[Dynamic[(a*b)^c]] ];
 getResult[divpotesp, a_,b_,c_]:=
-	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[((getEmoji[a]/getEmoji[b])^getEmoji[c]), 190] ]]],Return[Dynamic[(a/b)^c]]];
+	If[ImageQ[a]&&ImageQ[b],Return[ emoji[[ Mod[((getEmoji[a]/getEmoji[b])^c)+1, 190] ]] ],Return[Dynamic[(a/b)^c]] ];
 
 CommutativaSomma[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
 x = 1;
 y = 2;
-panelSizex = 900;
+panelSizex = 1200;
 panelSizey = 600;
 Panel[
 
@@ -78,12 +79,9 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" + "], y, Text[" = "], y, Text[" 
 }]},
 {
 	Row[{
-		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{emoji[[0]], emoji[[1]], emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]], emoji[[11]] }],
 		 " ",
-	
-		(*Text["seleziona secondo operando: "],*)
-		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }]
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }]
 	}]
 	
 }
@@ -103,7 +101,7 @@ CommutativaProdotto[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
 x = 1;
 y = 2;
-panelSizex = 900;
+panelSizex = 1200;
 panelSizey = 600;
 Panel[
 
@@ -122,12 +120,11 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" * "], y, Text[" = "], y, Text[" 
 }]},
 {
 	Row[{
-		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
-	
-		(*Text["seleziona secondo operando: "],*)
-		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }]
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
+		" ", 
+		PopupMenu[Dynamic[z],{emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]], emoji[[31]] }]
 	}]
 	
 }
@@ -164,14 +161,11 @@ Dynamic@Refresh[AppendTo[mylist, Row[{ x, Text[" * ("], y, Text[" + "], z ,Text[
 }]},
 {
 	Row[{
-		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
-	
-		(*Text["seleziona secondo operando: "],*)
-		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }],
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
 		" ", 
-		PopupMenu[Dynamic[z],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]
+		PopupMenu[Dynamic[z],{emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]], emoji[[31]] }]
 	}]
 	
 }
@@ -192,7 +186,7 @@ x = 1;
 y = 2;
 z = 3;
 panelSizex = 1200;
-panelSizey = 300;
+panelSizey = 600;
 Panel[
 
 Style[
@@ -208,14 +202,11 @@ Dynamic@Refresh[AppendTo[mylist, Row[{ Text["("], x, Text[" * "], y, Text[") * "
 }]},
 {
 	Row[{
-		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
-	
-		(*Text["seleziona secondo operando: "],*)
-		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }],
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
 		" ", 
-		PopupMenu[Dynamic[z],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]
+		PopupMenu[Dynamic[z],{emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]], emoji[[31]] }]
 	}]
 	
 }
@@ -236,7 +227,7 @@ x = 1;
 y = 2;
 z = 3;
 panelSizex = 1200;
-panelSizey = 300;
+panelSizey = 600;
 Panel[
 
 Style[
@@ -252,14 +243,11 @@ Dynamic@Refresh[AppendTo[mylist, Row[{ Text["("], x, Text[" + "], y, Text[") + "
 }]},
 {
 	Row[{
-		(*Text["seleziona primo operando: "],*)
-		PopupMenu[Dynamic[x],{neutroSomm, neutroProd, emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]] }],
+		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
-	
-		(*Text["seleziona secondo operando: "],*)
-		PopupMenu[Dynamic[y],{emoji[[11]], emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]] }],
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
 		" ", 
-		PopupMenu[Dynamic[z],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]
+		PopupMenu[Dynamic[z],{emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]], emoji[[31]] }]
 	}]
 	
 }
@@ -279,7 +267,7 @@ ProdottoPotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=900;
+panelSizex=1200;
 panelSizey=600;
 Panel[Style[
 Grid[{
@@ -288,9 +276,9 @@ Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" * "
 	Text[" = "],Dynamic[x]^Dynamic[powerx],Text[" * "],Dynamic[x]^Dynamic[powery],
 	Text[" = "],Dynamic[k=getResult[prodpotb,x, powerx,powery];k],
 	Dynamic@Refresh[AppendTo[mylist,
-		Row[{x^Row[{powerx}], Text[" * "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " + ",powery}], Text[" = "], x^Row[{powerx+powery}], Text[" = "],x^(powerx+powery)}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
+		Row[{x^Row[{powerx}], Text[" * "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " + ",powery}], Text[" = "], x^Row[{powerx+powery}], Text[" = "],k}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
 {Row[{
-	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}
+	PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ]}
 ]}},ItemSize->{60}],
 Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],
 DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
@@ -301,25 +289,34 @@ DivisionePotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=900;
+panelSizex=1200;
 panelSizey=600;
 Panel[Style[
 Grid[{
 {Grid[{{
 Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" / "], InputField[Dynamic[x],Enabled->False]^InputField[Dynamic[powery],FieldSize->2],
 	Text[" = "],Dynamic[x]^Dynamic[powerx],Text[" / "],Dynamic[x]^Dynamic[powery],
-	Text[" = "],Dynamic[k=getResult[divpotb,x,powerx,powery];k],
+	(*Devo prevedere un caso alternativo alla getResult, per i casi in cui b \[EGrave] pi\[UGrave] grande di c (non esiste una faccina corrispondente all'indice 1/3)*)
+	(*Non posso farlo nella getresult perch\[EAcute] non si pu\[OGrave] restituire un'immagine elevata ad una potenza*)
+	Text[" = "],Dynamic[k=If[powerx>=powery, getResult[divpotb,x,powerx,powery], x^(powerx-powery)];k],
 	Dynamic@Refresh[AppendTo[mylist,
-		Row[{x^Row[{powerx}], Text[" / "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " - ",powery}], Text[" = "], x^Row[{powerx-powery}], Text[" = "],k}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
-	{Row[{(*Text["seleziona primo operando: "],*)
-	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
+		Row[{x^Row[{powerx}], Text[" / "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " - ",powery}], Text[" = "], x^Row[{powerx-powery}], Text[" = "],k}]
+	];" ",TrackedSymbols:>{x,powerx,powery}]}]},
+	{Row[{
+	PopupMenu[
+			Dynamic[x],{emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} 
+		]}]}},
+		ItemSize->{60}],
+	Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],
+	DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]
+	]
 
 
 PotenzediPotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=900;
+panelSizex=1200;
 panelSizey=600;
 Panel[Style[
 Grid[{
@@ -330,8 +327,8 @@ Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2]^ InputField
 	Dynamic@Refresh[AppendTo[mylist,
 		Row[{x^Row[{Text["[ "], powerx, Text[" ]"]}]^Row[{Text["( "], powery, Text[" )"]}], Text[" = "], x^Row[{Text["( "], powerx, Text[" * "], powery, Text[" )"]}], Text[" = "],
         x^Row[{powerx*powery}], Text[" = "],k}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
-	{Row[{(*Text["seleziona primo operando: "],*)
-	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
+	{Row[{
+	PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
 
 ProdPotEsp[]:=DynamicModule[{x,y,k,powerx,mylist},mylist={};
 x=2;
@@ -347,34 +344,40 @@ Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" * "
 	Text[" = ("],Dynamic[x], Text[" * "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "],Dynamic[k=getResult[prodpotesp,x, y, powerx];k],
 	Dynamic@Refresh[AppendTo[mylist,
 		Row[{x^Row[{powerx}], Text[" * "], y^Row[{Text[powerx]}], Text[" = ("],Dynamic[x], Text[" * "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "], (x*y)^Row[{powerx}], Text[" = "], k}]];" ",TrackedSymbols:>{x,y,powerx}]}]},
-	{Row[{(*Text["seleziona primo operando: "],*)
-	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}],
+	{Row[{
+	PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]}],
 		" ", 
 		PopupMenu[Dynamic[y],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
+
+
 
 DivPotEsp[]:=DynamicModule[{x,y,k,powerx,mylist},mylist={};
 x=2;
 y=3;
 powerx=1;
 
-panelSizex=900;
+panelSizex=1200;
 panelSizey=600;
 Panel[Style[
 Grid[{
 {Grid[{{
 Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" / "], InputField[Dynamic[y]]^InputField[Dynamic[powerx],FieldSize->2, Enabled->False],
-	Text[" = ("],Dynamic[x], Text[" / "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "],Dynamic[k=getResult[divpotesp,x, y, powerx];k],
+	Text[" = ("],Dynamic[x], Text[" / "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "],
+		(*Per evitare lo stesso problema di prima, dato che non esiste una faccina corrispondente a 2/5*)
+		Dynamic[k=If[ImageQ[x]&&ImageQ[y], 
+				If[getEmoji[x]>=getEmoji[y], getResult[divpotesp,x,y,powerx], (x/y)^(powerx)],
+				getResult[divpotesp,x,y,powerx]
+		];k],
 	Dynamic@Refresh[AppendTo[mylist,
 		Row[{x^Row[{powerx}], Text[" / "], y^Row[{Text[powerx]}], Text[" = ("],Dynamic[x], Text[" / "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "], (x/y)^Row[{powerx}], Text[" = "], k}]];" ",TrackedSymbols:>{x,y,powerx}]}]},
-	{Row[{(*Text["seleziona primo operando: "],*)
-	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}],
+	{Row[{
+	PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]}],
 		" ", 
 		PopupMenu[Dynamic[y],{emoji[[21]], emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]] }]
 }]}
 },ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
 
 
-ProdPotEsp[]
 
 
 
@@ -391,6 +394,13 @@ End[]
 
 (* ::InheritFromParent:: *)
 (**)
+
+
+(* ::InheritFromParent:: *)
+(**)
+
+
+
 
 
 (* ::InheritFromParent:: *)
