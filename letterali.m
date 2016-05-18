@@ -44,6 +44,16 @@ getResult[assocprod, a_,b_,c_]:=
 	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]*getEmoji[b]*getEmoji[c], 189] ]]],Return[Dynamic[a*b*c]]];
 getResult[assocsomm, a_,b_,c_]:=
 	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[getEmoji[a]+getEmoji[b]+getEmoji[c], 189] ]]],Return[Dynamic[a+b+c]]];
+getResult[prodpotb, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^getEmoji[b])*(getEmoji[a]^getEmoji[c]), 189] ]]],Return[Dynamic[(a^b)*(a^c)]]];
+getResult[divpotb, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^getEmoji[b])/(getEmoji[a]^getEmoji[c]), 189] ]]],Return[Dynamic[(a^b)/(a^c)]]];
+getResult[potpot, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]^(getEmoji[b]*getEmoji[c])), 189] ]]],Return[Dynamic[a^(b*c)]]];
+getResult[prodpotesp, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]*getEmoji[b])^getEmoji[c]), 189] ]]],Return[Dynamic[(a*b)^c]]];
+getResult[divpotesp, a_,b_,c_]:=
+	If[ImageQ[a]&&ImageQ[b]&&ImageQ[c],Return[emoji[[ Mod[(getEmoji[a]/getEmoji[b])^getEmoji[c]), 189] ]]],Return[Dynamic[(a/b)^c]]];
 
 CommutativaSomma[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
@@ -275,11 +285,15 @@ Panel[Style[
 Grid[{
 {Grid[{{
 Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" * "], InputField[Dynamic[x],Enabled->False]^InputField[Dynamic[powery],FieldSize->2],
-	Text[" = "],Dynamic[x]^Dynamic[powery],Text[" * "],Dynamic[x]^Dynamic[powerx],
-	Text[" = "],Dynamic[k=getResult[commprod,x^powerx,x^powery];k],
+	Text[" = "],Dynamic[x]^Dynamic[powerx],Text[" * "],Dynamic[x]^Dynamic[powery],
+	Text[" = "],Dynamic[k=getResult[prodpotb,x, powerx,powery];k],
 	Dynamic@Refresh[AppendTo[mylist,
 		Row[{x^Row[{powerx}], Text[" * "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " + ",powery}], Text[" = "], x^Row[{powerx+powery}], Text[" = "],x^(powerx+powery)}]];" ",TrackedSymbols:>{x,powerx,powery}]}]},
-{Row[{(*Text["seleziona primo operando: "],*)PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
+{Row[{
+	PopupMenu[Dynamic[x],{neutroSomm,neutroProd,emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]]}]}
+]}},ItemSize->{60}],
+Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],
+DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
 ProdottoPotenze[]
 
 
@@ -287,7 +301,7 @@ ProdottoPotenze[]
 
 
 (* ::InheritFromParent:: *)
-(*Panel[Style[Grid[{{$CellContext`\[AliasDelimiter]}}, ItemSize -> {Automatic, Automatic}], DefaultOptions -> {InputField -> {ContinuousAction -> True, FieldSize -> {{5, 30}, {1, DirectedInfinity[1]}}}}], ImageSize -> {900, 900}]*)
+(**)
 
 
 (* ::InheritFromParent:: *)
