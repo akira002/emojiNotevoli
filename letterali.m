@@ -15,7 +15,8 @@
 (* :Discussion:  *)
 
 
-Begin["Proprieta`"];
+Begin["Proprieta`"]
+ClearAll["Proprieta`*"]
 panelSizex = 1200;
 panelSizey = 600;
 
@@ -138,7 +139,7 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" * "], y, Text[" = "], y, Text[" 
 	Row[{
 		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
-		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
+		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }]
 		
 	}]
 	
@@ -171,7 +172,7 @@ Grid[{
 		"(",  Dynamic[x], " * ", Dynamic[y], ")", " + ", "(",  Dynamic[x], " * ", Dynamic[z], ")"
 		Text[" = "],
 		Dynamic[k = getResult[distrprod, x, y, z]; k], 
-Dynamic@Refresh[AppendTo[mylist, Row[{ x, Text[" * ("], y, Text[" + "], z ,Text[") = ("], x, Text[" * "], y, Text[") + ("], x, Text[" * "], z, ,Text[") = "], k }]];" ",TrackedSymbols:>{x,y,z}]
+Dynamic@Refresh[AppendTo[mylist, Row[{ x, Text[" * ("], y, Text[" + "], z ,Text[") = ("], x, Text[" * "], y, Text[") + ("], x, Text[" * "], z, Text[") = "], k }]];" ",TrackedSymbols:>{x,y,z}]
 }]},
 {
 	Row[{
@@ -340,7 +341,8 @@ Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2]^ InputField
 	{Row[{
 	PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ]}]}},ItemSize->{60}],Dynamic@Panel[Column[mylist,Background->LightBlue,Spacings->{1,1},ItemSize->{0,0},Alignment->{Center,Center}],Background->LightBlue]}}],DefaultOptions->{InputField->{ContinuousAction->True,FieldSize->{{5,30},{1,Infinity}}}}],ImageSize->{panelSizex,panelSizex}]]
 
-ProdPotEsp[]:=DynamicModule[{x,y,k,powerx,mylist},mylist={};
+ProdPotEsp[]:=DynamicModule[{x,y,k,powerx,mylist},
+mylist={};
 x=2;
 y=3;
 powerx=1;
@@ -401,9 +403,6 @@ End[]
 
 (* ::InheritFromParent:: *)
 (**)
-
-
-
 
 
 (* ::InheritFromParent:: *)
