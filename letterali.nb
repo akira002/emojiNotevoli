@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[   2186039,      36781]
-NotebookOptionsPosition[   2183978,      36720]
-NotebookOutlinePosition[   2184332,      36736]
-CellTagsIndexPosition[   2184289,      36733]
+NotebookDataLength[   2188689,      36834]
+NotebookOptionsPosition[   2186599,      36772]
+NotebookOutlinePosition[   2186953,      36788]
+CellTagsIndexPosition[   2186910,      36785]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -59,9 +59,10 @@ Cell[TextData[{
  StyleBox["\n", "Subsubsection"],
  StyleBox["SetDirectory[NotebookDirectory[]];", "Code"],
  StyleBox["\n", "Subsubsection"],
- StyleBox["Get[\"letterali.m\"];", "Code"]
+ StyleBox["Get[\"letterali.m\"];\n\n\n", "Code"]
 }], "Text",
  Evaluatable->True,
+ InitializationCell->True,
  CellChangeTimes->{{3.67246291720498*^9, 3.672462949186749*^9}, {
    3.672462985488408*^9, 3.672463022467526*^9}, {3.6724630586332073`*^9, 
    3.672463127808425*^9}, {3.672463160120645*^9, 3.672463201964848*^9}, {
@@ -90,8 +91,11 @@ Cell[TextData[{
    3.6725536124598494`*^9, {3.672553752605324*^9, 3.6725537565030203`*^9}, {
    3.67255413504694*^9, 3.672554151121722*^9}, 3.672555982711996*^9, 
    3.672838415065093*^9, {3.672838507247836*^9, 3.6728385267239723`*^9}, 
-   3.672838570870571*^9},
- EmphasizeSyntaxErrors->True,
+   3.672838570870571*^9, {3.672840248597393*^9, 3.6728402744342623`*^9}, {
+   3.672840381017211*^9, 3.672840410688279*^9}, {3.672840523849566*^9, 
+   3.672840537744357*^9}, {3.672840584973927*^9, 3.672840605429913*^9}, {
+   3.6728407262817993`*^9, 3.672840728512374*^9}, {3.672840834318162*^9, 
+   3.6728408500532084`*^9}},
  TextAlignment->Left],
 
 Cell[TextData[{
@@ -2581,9 +2585,10 @@ Cell[BoxData[
                  FormBox["\" = \"", TextForm]], "InlineText"], 
                Text[" = "]],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[$CellContext`commsomm, 
-                   Proprieta`x$$, Proprieta`y$$]; Proprieta`k$$, 
-                StandardForm]],DynamicBox[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
+                  Proprieta`commsomm, Proprieta`x$$, Proprieta`y$$]; 
+                Proprieta`k$$, StandardForm]],DynamicBox[
                ToBoxes[
                 Refresh[AppendTo[Proprieta`mylist$$, 
                    Row[{Proprieta`x$$, 
@@ -5830,8 +5835,12 @@ ab735bUzssy2NmQ5ZmVnOWZnZ2kvSv3MFzK16RkvatNmmnDaMOvYxhjGMoe5
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.672839517468454*^9, 3.67283966415912*^9, 
-  3.672839714666374*^9, 3.6728397537907*^9}],
+ CellChangeTimes->{
+  3.672839517468454*^9, 3.67283966415912*^9, 3.672839714666374*^9, 
+   3.6728397537907*^9, {3.672840168251685*^9, 3.672840179643441*^9}, 
+   3.672840231525988*^9, {3.67284026811795*^9, 3.672840279279132*^9}, 
+   3.672840706831246*^9, {3.672840789485075*^9, 3.6728408143539352`*^9}, 
+   3.672840896280549*^9}],
 
 Cell[TextData[{
  "\n",
@@ -5942,7 +5951,8 @@ Cell[BoxData[
                  FormBox["\" = \"", TextForm]], "InlineText"], 
                Text[" = "]],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`commprod, Proprieta`x$$, Proprieta`y$$]; 
                 Proprieta`k$$, StandardForm]],DynamicBox[
                ToBoxes[
@@ -9167,7 +9177,7 @@ ab735bUzssy2NmQ5ZmVnOWZnZ2kvSv3MFzK16RkvatNmmnDaMOvYxhjGMoe5
                    "Byte", ColorSpace -> "RGB", Interleaving -> True], 
                    Selectable -> False], DefaultBaseStyle -> "ImageGraphics", 
                   ImageSizeRaw -> {40, 40}, 
-                  PlotRange -> {{0, 40}, {0, 40}}]}],""},
+                  PlotRange -> {{0, 40}, {0, 40}}]}]},
              "RowDefault"]}
           },
           AutoDelete->False,
@@ -9191,8 +9201,12 @@ ab735bUzssy2NmQ5ZmVnOWZnZ2kvSv3MFzK16RkvatNmmnDaMOvYxhjGMoe5
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.672839517514781*^9, 3.67283966421241*^9, 
-  3.6728397147336607`*^9, 3.6728397538575363`*^9}],
+ CellChangeTimes->{
+  3.672839517514781*^9, 3.67283966421241*^9, 3.6728397147336607`*^9, 
+   3.6728397538575363`*^9, {3.6728401683038893`*^9, 3.672840179688135*^9}, 
+   3.672840231552436*^9, {3.672840268140171*^9, 3.67284027933657*^9}, 
+   3.672840706906624*^9, {3.672840789535471*^9, 3.672840814392128*^9}, 
+   3.6728408963593903`*^9}],
 
 Cell[TextData[{
  "\n",
@@ -9279,7 +9293,7 @@ Cell[BoxData[
      Text[") = ("], 1, 
      Text[" * "], 2, 
      Text[") + ("], 1, 
-     Text[" * "], 3, Null, 
+     Text[" * "], 3, 
      Text[") = "], 
      Dynamic[1 (2 + 3)]}]}}, 
   PanelBox[
@@ -9317,7 +9331,8 @@ Cell[BoxData[
                    FormBox["\" = \"", TextForm]], "InlineText"], 
                  Text[" = "]]}],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`distrprod, Proprieta`x$$, Proprieta`y$$, 
                    Proprieta`z$$]; Proprieta`k$$, StandardForm]],DynamicBox[
                ToBoxes[
@@ -9328,7 +9343,7 @@ Cell[BoxData[
                     Text[") = ("], Proprieta`x$$, 
                     Text[" * "], Proprieta`y$$, 
                     Text[") + ("], Proprieta`x$$, 
-                    Text[" * "], Proprieta`z$$, Null, 
+                    Text[" * "], Proprieta`z$$, 
                     Text[") = "], Proprieta`k$$}]]; " ", 
                  TrackedSymbols :> {
                   Proprieta`x$$, Proprieta`y$$, Proprieta`z$$}], 
@@ -14181,7 +14196,7 @@ pbGx8cfA0vRdo/ViU6PlQlOjcl7qzp2/HKxjG2MYy5wfo0FP9PZfdBbwOg==
            Proprieta`mylist$$, Background -> LightBlue, Spacings -> {1, 1}, 
             ItemSize -> {0, 0}, Alignment -> {Center, Center}], Background -> 
            LightBlue], StandardForm],
-         ImageSizeCache->{166., {13., 18.}}]}
+         ImageSizeCache->{162., {13., 18.}}]}
       },
       AutoDelete->False,
       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
@@ -14193,8 +14208,12 @@ pbGx8cfA0vRdo/ViU6PlQlOjcl7qzp2/HKxjG2MYy5wfo0FP9PZfdBbwOg==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.672839517582411*^9, 3.6728396643128*^9, 
-  3.6728397147998323`*^9, 3.6728397539219923`*^9}],
+ CellChangeTimes->{
+  3.672839517582411*^9, 3.6728396643128*^9, 3.6728397147998323`*^9, 
+   3.6728397539219923`*^9, {3.672840168367268*^9, 3.672840179756024*^9}, 
+   3.672840231594378*^9, {3.672840268180977*^9, 3.672840279385496*^9}, 
+   3.672840706990511*^9, {3.672840789584906*^9, 3.672840814459762*^9}, 
+   3.6728408964461603`*^9}],
 
 Cell[TextData[{
  "\n ",
@@ -14306,7 +14325,8 @@ Cell[BoxData[
                    FormBox["\" = \"", TextForm]], "InlineText"], 
                  Text[" = "]]}],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`assocprod, Proprieta`x$$, Proprieta`y$$, 
                    Proprieta`z$$]; Proprieta`k$$, StandardForm]],DynamicBox[
                ToBoxes[
@@ -19182,8 +19202,12 @@ pbGx8cfA0vRdo/ViU6PlQlOjcl7qzp2/HKxjG2MYy5wfo0FP9PZfdBbwOg==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.6728395176484127`*^9, 3.6728396643948717`*^9, 
-  3.672839714866379*^9, 3.6728397539899*^9}],
+ CellChangeTimes->{
+  3.6728395176484127`*^9, 3.6728396643948717`*^9, 3.672839714866379*^9, 
+   3.6728397539899*^9, {3.672840168428985*^9, 3.672840179823044*^9}, 
+   3.672840231644987*^9, {3.672840268231577*^9, 3.672840279454406*^9}, 
+   3.672840707078637*^9, {3.672840789637682*^9, 3.672840814525631*^9}, 
+   3.67284089653545*^9}],
 
 Cell[TextData[{
  "\n",
@@ -19295,7 +19319,8 @@ Cell[BoxData[
                    FormBox["\" = \"", TextForm]], "InlineText"], 
                  Text[" = "]]}],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`assocsomm, Proprieta`x$$, Proprieta`y$$, 
                    Proprieta`z$$]; Proprieta`k$$, StandardForm]],DynamicBox[
                ToBoxes[
@@ -24171,8 +24196,12 @@ pbGx8cfA0vRdo/ViU6PlQlOjcl7qzp2/HKxjG2MYy5wfo0FP9PZfdBbwOg==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.6728395177153873`*^9, 3.6728396645724087`*^9, 
-  3.6728397149337378`*^9, 3.672839754058*^9}],
+ CellChangeTimes->{
+  3.6728395177153873`*^9, 3.6728396645724087`*^9, 3.6728397149337378`*^9, 
+   3.672839754058*^9, {3.672840168490451*^9, 3.672840179889043*^9}, 
+   3.672840231694293*^9, {3.6728402682818727`*^9, 3.672840279521036*^9}, 
+   3.672840707168561*^9, {3.672840789684506*^9, 3.672840814592991*^9}, 
+   3.672840896624826*^9}],
 
 Cell[TextData[{
  "\n",
@@ -24301,7 +24330,8 @@ Cell[BoxData[
                  FormBox["\" = \"", TextForm]], "InlineText"], 
                Text[" = "]],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`prodpotb, Proprieta`x$$, Proprieta`powerx$$, 
                    Proprieta`powery$$]; Proprieta`k$$, StandardForm]],
               DynamicBox[
@@ -26053,8 +26083,12 @@ i6cXnXAP4d+fLxKmC8RF6fwXFjJI6g==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.6728395177814817`*^9, 3.672839664694539*^9, 
-  3.672839714999976*^9, 3.672839754124454*^9}],
+ CellChangeTimes->{
+  3.6728395177814817`*^9, 3.672839664694539*^9, 3.672839714999976*^9, 
+   3.672839754124454*^9, {3.672840168535133*^9, 3.6728401799560423`*^9}, 
+   3.6728402317445583`*^9, {3.672840268332178*^9, 3.67284027958803*^9}, 
+   3.672840707234088*^9, {3.6728407897354717`*^9, 3.672840814659498*^9}, 
+   3.672840896691864*^9}],
 
 Cell[TextData[{
  "\n",
@@ -26185,7 +26219,7 @@ Cell[BoxData[
                Text[" = "]],DynamicBox[
                ToBoxes[
                Proprieta`k$$ = If[Proprieta`powerx$$ >= Proprieta`powery$$, 
-                   $CellContext`getResult[
+                   Proprieta`getResult[
                    Proprieta`divpotb, Proprieta`x$$, Proprieta`powerx$$, 
                     Proprieta`powery$$], 
                    Proprieta`x$$^(Proprieta`powerx$$ - Proprieta`powery$$)]; 
@@ -27763,7 +27797,11 @@ i6cXnXAP4d+fLxKmC8RF6fwXFjJI6g==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.6728397150668707`*^9, 3.672839754190633*^9}],
+ CellChangeTimes->{
+  3.6728397150668707`*^9, 3.672839754190633*^9, {3.6728401685855017`*^9, 
+   3.672840180020763*^9}, 3.6728402317946653`*^9, {3.672840268382203*^9, 
+   3.672840279640664*^9}, 3.6728407072941027`*^9, {3.67284078978448*^9, 
+   3.672840814710207*^9}, 3.67284089675498*^9}],
 
 Cell[TextData[{
  "\n",
@@ -27886,7 +27924,8 @@ Cell[BoxData[
                  FormBox["\" = \"", TextForm]], "InlineText"], 
                Text[" = "]],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`potpot, Proprieta`x$$, Proprieta`powerx$$, 
                    Proprieta`powery$$]; Proprieta`k$$, StandardForm]],
               DynamicBox[
@@ -29643,8 +29682,12 @@ i6cXnXAP4d+fLxKmC8RF6fwXFjJI6g==
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.6728395180145693`*^9, 3.672839665048078*^9, 
-  3.6728397151332083`*^9, 3.6728397542572193`*^9}],
+ CellChangeTimes->{
+  3.6728395180145693`*^9, 3.672839665048078*^9, 3.6728397151332083`*^9, 
+   3.6728397542572193`*^9, {3.672840168784487*^9, 3.6728401800707693`*^9}, 
+   3.672840231844399*^9, {3.672840268432213*^9, 3.672840279705217*^9}, 
+   3.672840707356984*^9, {3.6728407898343153`*^9, 3.6728408147632732`*^9}, 
+   3.672840896823368*^9}],
 
 Cell[TextData[{
  "\n",
@@ -29777,7 +29820,8 @@ Cell[BoxData[
                  FormBox["\" = \"", TextForm]], "InlineText"], 
                Text[" = "]],DynamicBox[
                ToBoxes[
-               Proprieta`k$$ = $CellContext`getResult[
+               Proprieta`k$$ = 
+                 Proprieta`getResult[
                   Proprieta`prodpotesp, Proprieta`x$$, Proprieta`y$$, 
                    Proprieta`powerx$$]; Proprieta`k$$, StandardForm]],
               DynamicBox[
@@ -33124,8 +33168,12 @@ VYph3twUw/y5Kcpsak+aOUd5PXm2MjVJk1GX1sZ9bMO27MO+38RpJ483AzO1
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.672839518083836*^9, 3.672839665310102*^9, 
-  3.6728397152040157`*^9, 3.672839754323902*^9}],
+ CellChangeTimes->{
+  3.672839518083836*^9, 3.672839665310102*^9, 3.6728397152040157`*^9, 
+   3.672839754323902*^9, {3.672840168840468*^9, 3.67284018013951*^9}, 
+   3.672840232052115*^9, {3.672840268481769*^9, 3.672840279771625*^9}, 
+   3.6728407074327183`*^9, {3.672840789884543*^9, 3.6728408148272057`*^9}, 
+   3.672840896898467*^9}],
 
 Cell[TextData[{
  "\n",
@@ -33264,11 +33312,11 @@ Cell[BoxData[
                    If[
                    Proprieta`getEmoji[Proprieta`x$$] >= 
                     Proprieta`getEmoji[Proprieta`y$$], 
-                    $CellContext`getResult[
+                    Proprieta`getResult[
                     Proprieta`divpotesp, Proprieta`x$$, Proprieta`y$$, 
                     Proprieta`powerx$$], (Proprieta`x$$/Proprieta`y$$)^
                     Proprieta`powerx$$], 
-                   $CellContext`getResult[
+                   Proprieta`getResult[
                    Proprieta`divpotesp, Proprieta`x$$, Proprieta`y$$, 
                     Proprieta`powerx$$]]; Proprieta`k$$, StandardForm]],
               DynamicBox[
@@ -36615,8 +36663,12 @@ VYph3twUw/y5Kcpsak+aOUd5PXm2MjVJk1GX1sZ9bMO27MO+38RpJ483AzO1
        DirectedInfinity[1]}}}],
    ImageSize->{1200, 1200}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.672839518148631*^9, 3.672839665379109*^9, 
-  3.672839715268486*^9, 3.672839754391055*^9}],
+ CellChangeTimes->{
+  3.672839518148631*^9, 3.672839665379109*^9, 3.672839715268486*^9, 
+   3.672839754391055*^9, {3.672840168893826*^9, 3.672840180206139*^9}, 
+   3.6728402320765657`*^9, {3.672840268688004*^9, 3.672840279838684*^9}, 
+   3.6728407075122957`*^9, {3.672840789934887*^9, 3.672840814894185*^9}, 
+   3.672840896977994*^9}],
 
 Cell[TextData[{
  "\nL'uso delle lettere al posto dei numeri, \[EGrave] un passo importante \
@@ -36736,52 +36788,53 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 2353, 35, 118, "Text"],
-Cell[2914, 57, 2368, 37, 75, "Text",
- Evaluatable->True],
-Cell[5285, 96, 143598, 2376, 455, "Text"],
-Cell[148886, 2474, 2279, 36, 94, "Text"],
-Cell[151168, 2512, 2135, 34, 19, "Text",
+Cell[2914, 57, 2669, 41, 132, "Text",
+ Evaluatable->True,
+ InitializationCell->True],
+Cell[5586, 100, 143598, 2376, 455, "Text"],
+Cell[149187, 2478, 2279, 36, 94, "Text"],
+Cell[151469, 2516, 2135, 34, 19, "Text",
  Evaluatable->True,
  CellOpen->False],
-Cell[153306, 2548, 195506, 3285, 1217, "Output"],
-Cell[348815, 5835, 2272, 35, 94, "Text"],
-Cell[351090, 5872, 2149, 33, 49, "Text",
+Cell[153607, 2552, 195738, 3290, 1217, "Output"],
+Cell[349348, 5844, 2272, 35, 94, "Text"],
+Cell[351623, 5881, 2149, 33, 49, "Text",
  Evaluatable->True],
-Cell[353242, 5907, 195606, 3287, 1217, "Output"],
-Cell[548851, 9196, 2393, 38, 94, "Text"],
-Cell[551247, 9236, 2158, 34, 68, "Text",
+Cell[353775, 5916, 195841, 3292, 1217, "Output"],
+Cell[549619, 9210, 2393, 38, 94, "Text"],
+Cell[552015, 9250, 2158, 34, 68, "Text",
  Evaluatable->True],
-Cell[553408, 9272, 293799, 4924, 1217, "Output"],
-Cell[847210, 14198, 2433, 38, 94, "Text"],
-Cell[849646, 14238, 2151, 33, 49, "Text",
+Cell[554176, 9286, 294024, 4929, 1217, "Output"],
+Cell[848203, 14217, 2433, 38, 94, "Text"],
+Cell[850639, 14257, 2151, 33, 49, "Text",
  Evaluatable->True],
-Cell[851800, 14273, 293302, 4912, 1217, "Output"],
-Cell[1145105, 19187, 2407, 38, 94, "Text"],
-Cell[1147515, 19227, 2148, 33, 49, "Text",
+Cell[852793, 14292, 293536, 4917, 1217, "Output"],
+Cell[1146332, 19211, 2407, 38, 94, "Text"],
+Cell[1148742, 19251, 2148, 33, 49, "Text",
  Evaluatable->True],
-Cell[1149666, 19262, 293311, 4912, 1217, "Output"],
-Cell[1442980, 24176, 2330, 37, 113, "Text"],
-Cell[1445313, 24215, 2146, 33, 49, "Text",
+Cell[1150893, 19286, 293548, 4917, 1217, "Output"],
+Cell[1444444, 24205, 2330, 37, 113, "Text"],
+Cell[1446777, 24244, 2146, 33, 49, "Text",
  Evaluatable->True],
-Cell[1447462, 24250, 106430, 1806, 1217, "Output"],
-Cell[1553895, 26058, 2406, 38, 94, "Text"],
-Cell[1556304, 26098, 2194, 33, 68, "Text",
+Cell[1448926, 24279, 106670, 1811, 1217, "Output"],
+Cell[1555599, 26092, 2406, 38, 94, "Text"],
+Cell[1558008, 26132, 2194, 33, 68, "Text",
  Evaluatable->True],
-Cell[1558501, 26133, 95995, 1632, 1217, "Output"],
-Cell[1654499, 27767, 2338, 37, 94, "Text"],
-Cell[1656840, 27806, 2172, 33, 68, "Text",
+Cell[1560205, 26167, 96215, 1636, 1217, "Output"],
+Cell[1656423, 27805, 2338, 37, 94, "Text"],
+Cell[1658764, 27844, 2172, 33, 68, "Text",
  Evaluatable->True],
-Cell[1659015, 27841, 106237, 1805, 1217, "Output"],
-Cell[1765255, 29648, 2369, 37, 94, "Text"],
-Cell[1767627, 29687, 2142, 33, 49, "Text",
+Cell[1660939, 27879, 106478, 1810, 1217, "Output"],
+Cell[1767420, 29691, 2369, 37, 94, "Text"],
+Cell[1769792, 29730, 2142, 33, 49, "Text",
  Evaluatable->True],
-Cell[1769772, 29722, 202308, 3405, 1217, "Output"],
-Cell[1972083, 33129, 2350, 37, 94, "Text"],
-Cell[1974436, 33168, 2189, 33, 68, "Text",
+Cell[1771937, 29765, 202546, 3410, 1217, "Output"],
+Cell[1974486, 33177, 2350, 37, 94, "Text"],
+Cell[1976839, 33216, 2189, 33, 68, "Text",
  Evaluatable->True],
-Cell[1976628, 33203, 202807, 3415, 1217, "Output"],
-Cell[2179438, 36620, 2732, 42, 144, "Text"],
-Cell[2182173, 36664, 1801, 54, 150, "Input",
+Cell[1979031, 33251, 203025, 3419, 1217, "Output"],
+Cell[2182059, 36672, 2732, 42, 144, "Text"],
+Cell[2184794, 36716, 1801, 54, 150, "Input",
  Evaluatable->False]
 }
 ]
