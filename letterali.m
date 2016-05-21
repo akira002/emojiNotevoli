@@ -29,10 +29,17 @@ Do[emoji[[i]] = Import[StringJoin["emoji/Emoji Smiley/Emoji Smiley-",ToString[i-
 
 getEmoji[a_]:= Module[ {num1},
 num1= Do[If[Equal[a,emoji[[i]] ], Return[i]],{i, 189}];
-(*Perch\[EAcute] gli smiley sono memorizzati nelle celle 1-190 del vettore, ma corrispondono ai numeri 0-189*)
+(*Because Emojis are memorized into cells from 1 to 190 of the vector, but they are mapped to numbers from 0 to 189*)
 Return[num1-1]];
-(*proteggere variabili AAAAAAAAAAAA*)
-(*per le stesse ragioni del -1 sopra, qui faccio +1*)
+
+(*I protect the varibles used for the invocation of the multple implementation of getResult, so no one can declare a variable with those names*)
+Protect[commsomm, commprod, distrprod, assocprod, assocsomm, prodpotb, divpob, potpot, prodpotesp, divpotesp];
+
+(*for the same reasons of the -1 in getEmoji, here I make a +1*)
+
+(* all the getResult share the same base structure: if operands are images, returns an image, otherwise it makes a simple algebric operation*)
+(* For all the operations where the result between emojis id can exeed the size of the vector, we calculate the module between the result and 190*)
+(*So we'll get results between 1 and 189*)
 getResult[commsomm, a_,b_]:=
 	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ (getEmoji[a]+getEmoji[b])+1 ]]],Return[Dynamic[a+b]]];
 getResult[commprod, a_,b_]:=
@@ -308,8 +315,8 @@ Grid[{
 {Grid[{{
 Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" / "], InputField[Dynamic[x],Enabled->False]^InputField[Dynamic[powery],FieldSize->2],
 	Text[" = "],Dynamic[x]^Dynamic[powerx],Text[" / "],Dynamic[x]^Dynamic[powery],
-	(*Devo prevedere un caso alternativo alla getResult, per i casi in cui b \[EGrave] pi\[UGrave] grande di c (non esiste una faccina corrispondente all'indice 1/3)*)
-	(*Non posso farlo nella getresult perch\[EAcute] non si pu\[OGrave] restituire un'immagine elevata ad una potenza*)
+	(*I must include an alternative case, when b is lager than c, so I would have a result <1, but emoji are mapped to int values (not exists emoji[[1/3]])*)
+	(*It would be more elegant to do it in the corresponding getResult, but it's impossible, since I can return the power of an image (es. :)^-3) *)
 	Text[" = "],Dynamic[k=If[powerx>=powery, getResult[divpotb,x,powerx,powery], x^(powerx-powery)];k],
 	Dynamic@Refresh[AppendTo[mylist,
 		Row[{x^Row[{powerx}], Text[" / "], x^Row[{powery}], Text[" = "], x^Row[{powerx, " - ",powery}], Text[" = "], x^Row[{powerx-powery}], Text[" = "],k}]
@@ -372,7 +379,7 @@ Grid[{
 {Grid[{{
 Row[{InputField[Dynamic[x]]^InputField[Dynamic[powerx],FieldSize->2], Text[" / "], InputField[Dynamic[y]]^InputField[Dynamic[powerx],FieldSize->2, Enabled->False],
 	Text[" = ("],Dynamic[x], Text[" / "], Dynamic[y], Text[" )"]^Dynamic[powerx], Text[" = "],
-		(*Per evitare lo stesso problema di prima, dato che non esiste una faccina corrispondente a 2/5*)
+		(*Same problem described for DivisionePotenze[], same counteremeasures*)
 		Dynamic[k=If[ImageQ[x]&&ImageQ[y], 
 				If[getEmoji[x]>=getEmoji[y], getResult[divpotesp,x,y,powerx], (x/y)^(powerx)],
 				getResult[divpotesp,x,y,powerx]
