@@ -14,11 +14,11 @@
 (* :Sources: *)
 (* :Discussion:  *)
 
-Commutativa::usage = "Per ripassare la propriet\[AGrave] commutativa nei letterali"
 
-Begin["Proprieta`"]
-Clear[Commutativa]
-Clear[x,y, w, z, a,b]
+Begin["Proprieta`"];
+panelSizex = 1200;
+panelSizey = 600;
+
 SetDirectory[NotebookDirectory[]];
 
 emoji = Range[0, 189];
@@ -30,7 +30,7 @@ getEmoji[a_]:= Module[ {num1},
 num1= Do[If[Equal[a,emoji[[i]] ], Return[i]],{i, 189}];
 (*Perch\[EAcute] gli smiley sono memorizzati nelle celle 1-190 del vettore, ma corrispondono ai numeri 0-189*)
 Return[num1-1]];
-
+(*proteggere variabili AAAAAAAAAAAA*)
 (*per le stesse ragioni del -1 sopra, qui faccio +1*)
 getResult[commsomm, a_,b_]:=
 	If[ImageQ[a]&&ImageQ[b],Return[emoji[[ (getEmoji[a]+getEmoji[b])+1 ]]],Return[Dynamic[a+b]]];
@@ -56,12 +56,29 @@ getResult[prodpotesp, a_,b_,c_]:=
 getResult[divpotesp, a_,b_,c_]:=
 	If[ImageQ[a]&&ImageQ[b],Return[ emoji[[ Mod[((getEmoji[a]/getEmoji[b])^c)+1, 190] ]] ],Return[Dynamic[(a/b)^c]] ];
 
+(*All next functions use Dynamic Module and Dynamic Mathematica's functions. The idea is to dynamically update a field for future computation, 
+always showing the same math property. For istance, if we want to show how commutative property works for addition, we use just a field for 
+input that can accept different kind of inputs, each time computing the property ad each time refreshing the result.
+ DynamicModule[{x,y,\[Ellipsis]},expr] (https://reference.wolfram.com/language/ref/DynamicModule.html?q=DynamicModule) represents an object which maintains 
+the same local instance of the symbols x, y, \[Ellipsis] in the course of all evaluations of Dynamic objects in expr. 
+Symbols specified in a DynamicModule will by default have their values maintained even across Wolfram System sessions.
+Dynamic[expr] (https://reference.wolfram.com/language/ref/Dynamic.html?q=Dynamic) represents an object that displays as the dynamically updated current value of expr. 
+If the displayed form of Dynamic[expr] is interactively changed or edited, an assignment is done to give expr the new value val that corresponds to the displayed form. 
+*)
+
+
+(*CommutativaSomma is more or less a template for all the other functions in this package. The idea is to dynamically take an input, i.e., a
+ integer value, an emoji or a letteral value. Once we have the input, we show and compute the commutative property for addition. 
+We store the entire string showing the all computation inside a list, that is printed inside a blue panel on the left of our input fields.
+Dynamically the list is updated and so modified in our panel, thanking Mathematica's Refresh function (https://reference.wolfram.com/language/ref/Refresh.html).
+Refresh[expr,opts] represents an object whose value in a Dynamic should be refreshed at times specified by the options opts.
+
+*)
 CommutativaSomma[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
 x = 1;
 y = 2;
-panelSizex = 1200;
-panelSizey = 600;
+
 Panel[
 
 Style[
@@ -79,7 +96,7 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" + "], y, Text[" = "], y, Text[" 
 }]},
 {
 	Row[{
-		PopupMenu[Dynamic[x],{emoji[[0]], emoji[[1]], emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]], emoji[[11]] }],
+		PopupMenu[Dynamic[x],{ emoji[[1]], emoji[[2]], emoji[[3]], emoji[[4]], emoji[[5]], emoji[[6]], emoji[[7]], emoji[[8]], emoji[[9]], emoji[[10]], emoji[[11]] }],
 		 " ",
 		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }]
 	}]
@@ -101,8 +118,7 @@ CommutativaProdotto[]:=DynamicModule[{x, y, k, mylist},
 mylist = {};
 x = 1;
 y = 2;
-panelSizex = 1200;
-panelSizey = 600;
+
 Panel[
 
 Style[
@@ -123,8 +139,7 @@ Dynamic@Refresh[AppendTo[mylist, Row[{x, Text[" * "], y, Text[" = "], y, Text[" 
 		PopupMenu[Dynamic[x],{emoji[[1]],emoji[[2]],emoji[[3]],emoji[[4]],emoji[[5]],emoji[[6]],emoji[[7]],emoji[[8]],emoji[[9]],emoji[[10]],emoji[[11]]} ],
 		 " ",
 		PopupMenu[Dynamic[y],{emoji[[12]], emoji[[13]], emoji[[14]], emoji[[15]], emoji[[16]], emoji[[17]], emoji[[18]], emoji[[19]], emoji[[20]], emoji[[21]] }],
-		" ", 
-		PopupMenu[Dynamic[z],{emoji[[22]], emoji[[23]], emoji[[24]], emoji[[25]], emoji[[26]], emoji[[27]], emoji[[28]], emoji[[29]], emoji[[30]], emoji[[31]] }]
+		
 	}]
 	
 }
@@ -144,8 +159,7 @@ mylist = {};
 x = 1;
 y = 2;
 z = 3;
-panelSizex = 1200;
-panelSizey = 600;
+
 Panel[
 
 Style[
@@ -185,8 +199,7 @@ mylist = {};
 x = 1;
 y = 2;
 z = 3;
-panelSizex = 1200;
-panelSizey = 600;
+
 Panel[
 
 Style[
@@ -267,8 +280,7 @@ ProdottoPotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=1200;
-panelSizey=600;
+
 Panel[Style[
 Grid[{
 {Grid[{{
@@ -289,8 +301,7 @@ DivisionePotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=1200;
-panelSizey=600;
+
 Panel[Style[
 Grid[{
 {Grid[{{
@@ -316,8 +327,7 @@ PotenzediPotenze[]:=DynamicModule[{x,k,powerx,powery,mylist},mylist={};
 x=2;
 powerx=1;
 powery=1;
-panelSizex=1200;
-panelSizey=600;
+
 Panel[Style[
 Grid[{
 {Grid[{{
@@ -335,8 +345,7 @@ x=2;
 y=3;
 powerx=1;
 
-panelSizex=1200;
-panelSizey=600;
+
 Panel[Style[
 Grid[{
 {Grid[{{
@@ -356,8 +365,6 @@ x=2;
 y=3;
 powerx=1;
 
-panelSizex=1200;
-panelSizey=600;
 Panel[Style[
 Grid[{
 {Grid[{{
@@ -396,11 +403,11 @@ End[]
 (**)
 
 
+CommutativaSomma[]
+
+
 (* ::InheritFromParent:: *)
 (**)
-
-
-
 
 
 (* ::InheritFromParent:: *)
